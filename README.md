@@ -66,3 +66,8 @@ docker login --username AWS --password-stdin 092203534677.dkr.ecr.eu-west-1.amaz
 > helm unistall myapp
 > minikube stop
 
+> helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+> kubectl get secret monitoring-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo (descobrir pass com username admin)
+> minikube service monitoring-grafana
+
