@@ -44,3 +44,25 @@ Comandos:
 
 # Push da imagem
 > docker push <id_aws>.dkr.ecr.eu-west-1.amazonaws.com/flask-devops-app
+
+
+# Fase 3
+
+## Objetivo: CI/CD com GitHub Actions + Push para ECR
+
+Criação do .github\workflows\ci-cd.yaml e adição dos secrets consoante a conta aws
+
+
+# Fase 4
+
+> aws ecr get-login-password --region eu-west-1 | \
+docker login --username AWS --password-stdin 092203534677.dkr.ecr.eu-west-1.amazonaws.com
+
+> kubectl create secret docker-registry regcred \
+  --docker-server=092203534677.dkr.ecr.eu-west-1.amazonaws.com \
+  --docker-username=AWS \
+  --docker-password=$(aws ecr get-login-password --region eu-west-1)
+
+> helm unistall myapp
+> minikube stop
+

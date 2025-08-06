@@ -1,0 +1,18 @@
+replicaCount: 1
+
+image:
+  repository: 092203534677.dkr.ecr.eu-west-1.amazonaws.com/flask-devops-app
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: NodePort
+  port: 5000
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
