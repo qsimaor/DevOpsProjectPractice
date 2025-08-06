@@ -71,7 +71,6 @@ docker login --username AWS --password-stdin 092203534677.dkr.ecr.eu-west-1.amaz
 > kubectl get secret monitoring-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo (descobrir pass com username admin)
 > minikube service monitoring-grafana
 
-Testes automatizados no pipeline
 Separação de ambientes (ex: prod/staging)
 CI/CD 100% automatizado com versionamento de imagem (timestamp/SHA)
 ArgoCD ou GitOps
