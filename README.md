@@ -73,9 +73,8 @@ docker login --username AWS --password-stdin 092203534677.dkr.ecr.eu-west-1.amaz
 
 Testes automatizados no pipeline
 Separação de ambientes (ex: prod/staging)
-
-ArgoCD ou GitOps
 CI/CD 100% automatizado com versionamento de imagem (timestamp/SHA)
+ArgoCD ou GitOps
 
 Alertmanager + regras de alerta + grafana
 Documentação
