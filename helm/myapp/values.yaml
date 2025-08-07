@@ -1,18 +1,19 @@
-replicaCount: 1
-
+# ANTES (produção):
 image:
-  repository: 092203534677.dkr.ecr.eu-west-2.amazonaws.com/flask-devops-app
-  tag: latest
-  pullPolicy: Always
+  tag: "latest"
 
-service:
-  type: NodePort
-  port: 5000
+# DEPOIS (staging):
+image:
+  tag: "staging"
 
-resources: {}
+# Adicionar também:
+nameOverride: "devops-practice-staging"
+fullnameOverride: "devops-practice-staging"
 
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
