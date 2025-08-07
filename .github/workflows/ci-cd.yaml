@@ -57,6 +57,8 @@ jobs:
       - name: 📝 Atualizar tag no Helm values.yaml
         run: |
           sed -i "s/tag: .*/tag: \"$SHORT_SHA\"/" helm/myapp/values.yaml
+          echo "Novo values.yaml:"
+          cat helm/myapp/values.yaml
 
       - name: 📤 Commit e push da alteração no values.yaml
         env:
