@@ -2,18 +2,22 @@ replicaCount: 1
 
 image:
   repository: 092203534677.dkr.ecr.eu-west-2.amazonaws.com/flask-devops-app
-  tag: "latest"
+  tag: "latest" 
   pullPolicy: Always
 
 service:
-  type: ClusterIP  
-  port: 80         
-  targetPort: 5000
+  type: NodePort     
+  port: 5000       
 
-resources: {}
+# Production environment (remove resource limits)
+resources: {}     
 
 nodeSelector: {}
 
 tolerations: []
 
 affinity: {}
+
+# Production configurations (remove staging specific names)
+nameOverride: ""                  
+fullnameOverride: ""             
