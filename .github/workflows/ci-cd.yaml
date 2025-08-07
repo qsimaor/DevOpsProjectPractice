@@ -1,5 +1,8 @@
 name: CI/CD - Build, Test, Push and Deploy with Helm
 
+permissions:
+  contents: write
+
 on:
   push:
     branches:
@@ -11,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      IMAGE_TAG_ENV: ${{ github.ref == 'refs/heads/main' && 'latest' || 'staging' }}
+      IMAGE_TAG_ENV: ${{ github.ref_name == 'main' && 'latest' || 'staging' }}
 
     steps:
       - name: 📥 Checkout do código
@@ -61,14 +64,12 @@ jobs:
         run: |
           git config --global user.name "qsimaor"
           git config --global user.email "qrodrigues.simao@gmail.com"
-          
-          git add helm/myapp/values.yaml
-          git commit -m "Update image tag to $SHORT_SHA" || echo "Nada para commitar"
-          
-          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}
-          
-          git push origin HEAD:main
 
+          git add helm/myapp/values.yaml
+          git commit -m "Update image tag to $SHORT_SHA" || echo "Sem alterações para commit"
+
+          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}
+          git push origin HEAD:${{ github.ref_name }} --verbose
 
       - name: 📊 Análise estática com SonarCloud (opcional)
         uses: SonarSource/sonarcloud-github-action@v2
