@@ -1,0 +1,33 @@
+name: CI - Staging Tests
+
+on:
+  push:
+    branches: [ staging ]
+  pull_request:
+    branches: [ staging ]
+
+jobs:
+  test-staging:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout do código
+        uses: actions/checkout@v3
+
+      - name: 🧪 Run Python tests
+        run: |
+          cd app/backend
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+          pytest
+
+      - name: 📊 Análise estática com SonarCloud
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          projectBaseDir: .
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: ✅ Tests passed - Ready for PR to main
+        run: echo "✅ Staging tests passed! This branch is ready for Pull Request to main."
