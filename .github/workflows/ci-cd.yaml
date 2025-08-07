@@ -55,10 +55,14 @@ jobs:
         run: |
           sed -i "s/tag: .*/tag: \"$SHORT_SHA\"/" helm/myapp/values.yaml
 
-      - name: 📤 Commit e push da alteração no values.yaml
+      - name: 🔐 Configurar autenticação Git com GH_PAT
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }}
+
+      - name: 📤 Commit e push da alteração no values.yaml
+        run: |
           git add helm/myapp/values.yaml
           git commit -m "Update image tag to $SHORT_SHA"
           git push
