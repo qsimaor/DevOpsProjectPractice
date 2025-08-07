@@ -61,10 +61,14 @@ jobs:
         run: |
           git config --global user.name "qsimaor"
           git config --global user.email "qrodrigues.simao@gmail.com"
-          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}
+          
           git add helm/myapp/values.yaml
-          git commit -m "Update image tag to $SHORT_SHA"
-          git push
+          git commit -m "Update image tag to $SHORT_SHA" || echo "Nada para commitar"
+          
+          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}
+          
+          git push origin HEAD:main
+
 
       - name: 📊 Análise estática com SonarCloud (opcional)
         uses: SonarSource/sonarcloud-github-action@v2
