@@ -71,7 +71,4 @@ docker login --username AWS --password-stdin 092203534677.dkr.ecr.eu-west-1.amaz
 > kubectl get secret monitoring-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo (descobrir pass com username admin)
 > minikube service monitoring-grafana
 
-ArgoCD ou GitOps
-
-Alertmanager + regras de alerta + grafana
 Documentação

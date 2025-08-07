@@ -2,22 +2,15 @@ replicaCount: 1
 
 image:
   repository: 092203534677.dkr.ecr.eu-west-2.amazonaws.com/flask-devops-app
-  tag: "staging"
+  tag: "latest" 
   pullPolicy: Always
 
 service:
-  type: ClusterIP  
-  port: 80         
-  targetPort: 5000
+  type: NodePort     
+  port: 5000       
 
-# Staging environment with lower resources
-resources:
-  limits:
-    cpu: 200m
-    memory: 256Mi
-  requests:
-    cpu: 100m
-    memory: 128Mi
+# Production environment (remove resource limits)
+resources: {}     
 
 nodeSelector: {}
 
@@ -25,6 +18,6 @@ tolerations: []
 
 affinity: {}
 
-# Staging specific configurations
-nameOverride: "devops-practice-staging"
-fullnameOverride: "devops-practice-staging"
+# Production configurations (remove staging specific names)
+nameOverride: ""                  
+fullnameOverride: ""             
