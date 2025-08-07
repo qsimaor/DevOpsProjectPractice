@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import Response
 from prometheus_client import generate_latest, CONTENT_TYPE_LATEST, Counter
+import os
 
 
 app = Flask(__name__)
@@ -15,6 +16,17 @@ def hello():
 @app.route("/health")
 def health():
     return "OK", 200
+
+@app.route("/version")
+def version():
+    REQUESTS.inc()
+    environment = os.getenv("ENVIRONMENT", "staging")
+    return {
+        "version": "1.0.1",
+        "environment": environment,
+        "feature": "Version endpoint added",
+        "build": "staging-ready"
+    }
 
 @app.route("/metrics")
 def metrics():
