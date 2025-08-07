@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: 092203534677.dkr.ecr.eu-west-2.amazonaws.com/flask-devops-app
-  tag: "c6eb4c3"
+  tag: "b5c8992"
   pullPolicy: Always
 
 service:
