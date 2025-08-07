@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: 092203534677.dkr.ecr.eu-west-2.amazonaws.com/flask-devops-app
-  tag: "PLACEHOLDER_SHA"
+  tag: "908767d"
   pullPolicy: Always
 
 service:
