@@ -20,12 +20,12 @@ def health():
 @app.route("/version")
 def version():
     REQUESTS.inc()
-    environment = os.getenv("ENVIRONMENT", "staging")
+    environment = os.getenv("ENVIRONMENT", "production")
     return {
-        "version": "1.0.1",
+        "version": "1.0.2",
         "environment": environment,
-        "feature": "Version endpoint added",
-        "build": "staging-ready"
+        "feature": "Version endpoint updated for demo",
+        "build": "production-ready"
     }
 
 @app.route("/metrics")
